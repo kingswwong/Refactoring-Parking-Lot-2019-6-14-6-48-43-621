@@ -1,3 +1,4 @@
+import exception.NotEnoughPosition;
 import exception.TicketMissing;
 import exception.UnRecognizeException;
 
@@ -10,6 +11,9 @@ public class Parker {
     }
 
     public Ticket park(Car car) {
+        if(parkingLot.isFull()){
+            throw new NotEnoughPosition();
+        }
         return parkingLot.park(car);
     }
 
@@ -23,4 +27,5 @@ public class Parker {
         }
         return parkingLot.fetch(ticket);
     }
+
 }

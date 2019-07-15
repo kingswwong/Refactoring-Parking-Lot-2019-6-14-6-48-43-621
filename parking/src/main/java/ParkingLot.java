@@ -32,4 +32,8 @@ public class ParkingLot {
     public boolean containsTicket(Ticket ticket) {
         return carList.containsKey(ticket);
     }
+
+    public boolean isFull() {
+        return capcity <= carList.size();
+    }
 }

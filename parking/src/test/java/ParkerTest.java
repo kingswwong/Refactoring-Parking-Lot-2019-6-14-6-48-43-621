@@ -1,3 +1,4 @@
+import exception.NotEnoughPosition;
 import exception.TicketMissing;
 import exception.UnRecognizeException;
 import org.junit.jupiter.api.Test;
@@ -40,11 +41,20 @@ public class ParkerTest {
     }
 
     @Test
-    public void should_throw_ticket_be_used_exception_when_customer_given_the_used_ticket(){
+    public void should_unrecognize_ticket_exception_exception_when_customer_given_the_used_ticket(){
         Parker parkingBoy = new Parker(new ParkingLot(1));
         Car car = new Car();
         Ticket ticket = parkingBoy.park(car);
         parkingBoy.fetch(ticket);
         assertThrows(UnRecognizeException.class,()-> parkingBoy.fetch(ticket));
+    }
+
+    @Test
+    public void should_throw_parking_lot_is_full_when_parking_lot_is_full(){
+        Parker parkingBoy = new Parker(new ParkingLot(1));
+        Car car1 = new Car();
+        Car car2 = new Car();
+        parkingBoy.park(car1);
+        assertThrows(NotEnoughPosition.class,()-> parkingBoy.park(car2));
     }
 }
