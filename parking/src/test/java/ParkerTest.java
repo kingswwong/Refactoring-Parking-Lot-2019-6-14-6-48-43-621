@@ -1,3 +1,4 @@
+import exception.TicketMissing;
 import exception.UnRecognizeException;
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +36,15 @@ public class ParkerTest {
         parkingBoy.park(car);
         Ticket ticket = new Ticket();
         assertThrows(UnRecognizeException.class,()->parkingBoy.fetch(ticket));
-        assertThrows(UnRecognizeException.class,()->parkingBoy.fetch(null));
+        assertThrows(TicketMissing.class,()->parkingBoy.fetch(null));
+    }
+
+    @Test
+    public void should_throw_ticket_be_used_exception_when_customer_given_the_used_ticket(){
+        Parker parkingBoy = new Parker(new ParkingLot(1));
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+        parkingBoy.fetch(ticket);
+        assertThrows(UnRecognizeException.class,()-> parkingBoy.fetch(ticket));
     }
 }

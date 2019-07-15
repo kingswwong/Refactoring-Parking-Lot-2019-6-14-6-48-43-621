@@ -17,6 +17,18 @@ public class ParkingLot {
         this.carList = carList;
     }
 
+    public Ticket park(Car car){
+        Ticket ticket = new Ticket();
+        this.carList.put(ticket,car);
+        return ticket;
+    }
+
+    public Car fetch(Ticket ticket){
+        Car car = carList.get(ticket);
+        carList.remove(ticket);
+        return car;
+    }
+
     public boolean containsTicket(Ticket ticket) {
         return carList.containsKey(ticket);
     }
