@@ -16,4 +16,8 @@ public class ParkingLot {
     public void setCarList(HashMap<Ticket, Car> carList) {
         this.carList = carList;
     }
+
+    public boolean containsTicket(Ticket ticket) {
+        return carList.containsKey(ticket);
+    }
 }

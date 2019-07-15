@@ -1,3 +1,4 @@
+import exception.UnRecognizeException;
 
 public class Parker {
 
@@ -14,6 +15,13 @@ public class Parker {
     }
 
     public Car fetch(Ticket ticket) {
+        if(ticket == null){
+            throw new UnRecognizeException();
+        }
+        boolean isContainsTicket = parkingLot.containsTicket(ticket);
+        if(!isContainsTicket){
+            throw new UnRecognizeException();
+        }
         return parkingLot.getCarList().get(ticket);
     }
 }
