@@ -8,7 +8,7 @@ public class ParkerTest {
     @Test
     public void should_parking_boy_park_a_car_and_fetch_a_car(){
         ParkingLot parkingLot = new ParkingLot(1);
-        Parker parkingBoy = new Parker(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
 
         Ticket ticket = parkingBoy.park(car);
@@ -18,7 +18,7 @@ public class ParkerTest {
 
     @Test
     public void should_park_multiple_car_and_fetch_the_right_car(){
-        Parker parkingBoy = new Parker(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(2));
         Car car1 = new Car();
         Car car2 = new Car();
         parkingBoy.park(car1);
@@ -30,7 +30,7 @@ public class ParkerTest {
 
     @Test
     public void should_throw_unrecognize_ticket_exception_when_customer_given_the_wrong_ticket(){
-        Parker parkingBoy = new Parker(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         Car car = new Car();
         parkingBoy.park(car);
         Ticket ticket = new Ticket();
@@ -40,7 +40,7 @@ public class ParkerTest {
 
     @Test
     public void should_unrecognize_ticket__exception_when_customer_given_the_used_ticket(){
-        Parker parkingBoy = new Parker(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         Car car = new Car();
         Ticket ticket = parkingBoy.park(car);
         parkingBoy.fetch(ticket);
@@ -50,7 +50,7 @@ public class ParkerTest {
 
     @Test
     public void should_throw_parking_lot_is_full_when_parking_lot_is_full(){
-        Parker parkingBoy = new Parker(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         Car car1 = new Car();
         Car car2 = new Car();
 
@@ -61,14 +61,14 @@ public class ParkerTest {
 
     @Test
     public void should_throw_car_missing_exception_when_customer_given_a_null_car(){
-        Parker parkingBoy = new Parker(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
 
         assertThrows(CarMissing.class,()-> parkingBoy.park(null));
     }
 
     @Test
     public void should_throw_car_exist_exception_when_customer_given_a_parked_car(){
-        Parker parkingBoy = new Parker(new ParkingLot(2));
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(2));
         Car car = new Car();
         parkingBoy.park(car);
         assertThrows(CarExist.class,()-> parkingBoy.park(car));
