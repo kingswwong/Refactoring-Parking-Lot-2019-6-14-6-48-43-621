@@ -3,10 +3,15 @@ import java.util.HashMap;
 public class ParkingLot {
     private final int capcity;
     private HashMap<Ticket,Car> carList = new HashMap<>();
-
+    private int id;
 
     public ParkingLot(int capcity) {
         this.capcity = capcity;
+    }
+
+    public ParkingLot(int capcity,  int id) {
+        this.capcity = capcity;
+        this.id = id;
     }
 
     public HashMap<Ticket, Car> getCarList() {
@@ -18,7 +23,7 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car){
-        Ticket ticket = new Ticket();
+        Ticket ticket = new Ticket(id);
         this.carList.put(ticket,car);
         return ticket;
     }
@@ -39,5 +44,9 @@ public class ParkingLot {
 
     public boolean isCarExist(Car car){
         return carList.values().contains(car);
+    }
+
+    public int getRemainingPosition(){
+        return capcity - carList.size();
     }
 }

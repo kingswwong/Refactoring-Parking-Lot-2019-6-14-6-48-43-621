@@ -1,10 +1,30 @@
 import exception.*;
 
-public abstract class Parker {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+public abstract class Parker {
+    protected List<ParkingLot> parkingLotList = new ArrayList<>();
+
+    public Parker(ParkingLot... parkingLots) {
+        parkingLotList.addAll(Arrays.asList(parkingLots));
+    }
 
     public abstract Ticket park(Car car);
 
-    public abstract Car fetch(Ticket ticket);
+    public Car fetch(Ticket ticket) {
+        if(ticket == null){
+            throw new TicketMissing();
+        }
+        ParkingLot correspondingParkingLot = null;
+        try{
+            correspondingParkingLot = parkingLotList.stream().filter(parkingLot -> parkingLot.containsTicket(ticket)).findFirst().get();
+        }catch (Exception e){
+            throw new UnRecognizeException();
+        }
+
+        return correspondingParkingLot.fetch(ticket);
+    }
 
 }

@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class ParkingBoy extends Parker {
-    private List<ParkingLot> parkingLotList = new ArrayList<>();
-
 
     public ParkingBoy(ParkingLot... parkingLots) {
-        parkingLotList.addAll(Arrays.asList(parkingLots));
+        super(parkingLots);
     }
 
     @Override
@@ -31,20 +29,5 @@ public class ParkingBoy extends Parker {
         }
 
         return notFullParkingLot.park(car);
-    }
-
-    @Override
-    public Car fetch(Ticket ticket) {
-        if(ticket == null){
-            throw new TicketMissing();
-        }
-        ParkingLot correspondingParkingLot = null;
-        try{
-            correspondingParkingLot = parkingLotList.stream().filter(parkingLot -> parkingLot.containsTicket(ticket)).findFirst().get();
-        }catch (Exception e){
-            throw new UnRecognizeException();
-        }
-
-        return correspondingParkingLot.fetch(ticket);
     }
 }
