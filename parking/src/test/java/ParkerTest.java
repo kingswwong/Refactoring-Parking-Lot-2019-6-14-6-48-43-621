@@ -1,7 +1,4 @@
-import exception.CarMissing;
-import exception.NotEnoughPosition;
-import exception.TicketMissing;
-import exception.UnRecognizeException;
+import exception.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,7 +39,7 @@ public class ParkerTest {
     }
 
     @Test
-    public void should_unrecognize_ticket_exception_exception_when_customer_given_the_used_ticket(){
+    public void should_unrecognize_ticket__exception_when_customer_given_the_used_ticket(){
         Parker parkingBoy = new Parker(new ParkingLot(1));
         Car car = new Car();
         Ticket ticket = parkingBoy.park(car);
@@ -67,5 +64,13 @@ public class ParkerTest {
         Parker parkingBoy = new Parker(new ParkingLot(1));
 
         assertThrows(CarMissing.class,()-> parkingBoy.park(null));
+    }
+
+    @Test
+    public void should_throw_car_exist_exception_when_customer_given_a_parked_car(){
+        Parker parkingBoy = new Parker(new ParkingLot(2));
+        Car car = new Car();
+        parkingBoy.park(car);
+        assertThrows(CarExist.class,()-> parkingBoy.park(car));
     }
 }

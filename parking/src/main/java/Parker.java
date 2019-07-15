@@ -1,7 +1,4 @@
-import exception.CarMissing;
-import exception.NotEnoughPosition;
-import exception.TicketMissing;
-import exception.UnRecognizeException;
+import exception.*;
 
 public class Parker {
 
@@ -14,6 +11,9 @@ public class Parker {
     public Ticket park(Car car) {
         if(car == null){
             throw new CarMissing();
+        }
+        if(parkingLot.isCarExist(car)){
+            throw new CarExist();
         }
         if(parkingLot.isFull()){
             throw new NotEnoughPosition();

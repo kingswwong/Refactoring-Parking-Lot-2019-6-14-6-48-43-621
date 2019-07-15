@@ -36,4 +36,8 @@ public class ParkingLot {
     public boolean isFull() {
         return capcity <= carList.size();
     }
+
+    public boolean isCarExist(Car car){
+        return carList.values().contains(car);
+    }
 }
