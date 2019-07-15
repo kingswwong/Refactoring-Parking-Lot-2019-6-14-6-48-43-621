@@ -1,3 +1,4 @@
+import exception.TicketMissing;
 import exception.UnRecognizeException;
 
 public class Parker {
@@ -9,19 +10,17 @@ public class Parker {
     }
 
     public Ticket park(Car car) {
-        Ticket ticket = new Ticket();
-        parkingLot.getCarList().put(ticket,car);
-        return ticket;
+        return parkingLot.park(car);
     }
 
     public Car fetch(Ticket ticket) {
         if(ticket == null){
-            throw new UnRecognizeException();
+            throw new TicketMissing();
         }
         boolean isContainsTicket = parkingLot.containsTicket(ticket);
         if(!isContainsTicket){
             throw new UnRecognizeException();
         }
-        return parkingLot.getCarList().get(ticket);
+        return parkingLot.fetch(ticket);
     }
 }
