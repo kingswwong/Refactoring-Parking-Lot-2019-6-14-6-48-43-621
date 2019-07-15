@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SmartParkingBoyTest {
     @Test
-    public void should_park_the_car_to_more_empty_parking_lot(){
+    public void should park the car to more empty parking lot(){
 
         Car car = new Car();
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy(new ParkingLot(1,1),new ParkingLot(2,2),new ParkingLot(3,3));

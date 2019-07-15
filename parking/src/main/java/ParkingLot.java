@@ -2,14 +2,14 @@ import java.util.HashMap;
 
 public class ParkingLot {
     private final int capcity;
-    private HashMap<Ticket,Car> carList = new HashMap<>();
+    private HashMap<Ticket, Car> carList = new HashMap<>();
     private int id;
 
     public ParkingLot(int capcity) {
         this.capcity = capcity;
     }
 
-    public ParkingLot(int capcity,  int id) {
+    public ParkingLot(int capcity, int id) {
         this.capcity = capcity;
         this.id = id;
     }
@@ -22,13 +22,13 @@ public class ParkingLot {
         this.carList = carList;
     }
 
-    public Ticket park(Car car){
+    public Ticket park(Car car) {
         Ticket ticket = new Ticket(id);
-        this.carList.put(ticket,car);
+        this.carList.put(ticket, car);
         return ticket;
     }
 
-    public Car fetch(Ticket ticket){
+    public Car fetch(Ticket ticket) {
         Car car = carList.get(ticket);
         carList.remove(ticket);
         return car;
@@ -42,11 +42,15 @@ public class ParkingLot {
         return capcity <= carList.size();
     }
 
-    public boolean isCarExist(Car car){
+    public boolean isCarExist(Car car) {
         return carList.values().contains(car);
     }
 
-    public int getRemainingPosition(){
+    public int getRemainingPosition() {
         return capcity - carList.size();
+    }
+
+    public double getParkingRate() {
+        return (capcity - carList.size()) / capcity;
     }
 }
