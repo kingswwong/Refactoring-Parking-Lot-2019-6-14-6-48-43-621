@@ -1,3 +1,4 @@
+import exception.CarMissing;
 import exception.NotEnoughPosition;
 import exception.TicketMissing;
 import exception.UnRecognizeException;
@@ -11,6 +12,9 @@ public class Parker {
     }
 
     public Ticket park(Car car) {
+        if(car == null){
+            throw new CarMissing();
+        }
         if(parkingLot.isFull()){
             throw new NotEnoughPosition();
         }

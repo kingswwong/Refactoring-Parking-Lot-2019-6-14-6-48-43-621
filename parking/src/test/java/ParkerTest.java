@@ -1,3 +1,4 @@
+import exception.CarMissing;
 import exception.NotEnoughPosition;
 import exception.TicketMissing;
 import exception.UnRecognizeException;
@@ -46,6 +47,7 @@ public class ParkerTest {
         Car car = new Car();
         Ticket ticket = parkingBoy.park(car);
         parkingBoy.fetch(ticket);
+
         assertThrows(UnRecognizeException.class,()-> parkingBoy.fetch(ticket));
     }
 
@@ -54,7 +56,16 @@ public class ParkerTest {
         Parker parkingBoy = new Parker(new ParkingLot(1));
         Car car1 = new Car();
         Car car2 = new Car();
+
         parkingBoy.park(car1);
+
         assertThrows(NotEnoughPosition.class,()-> parkingBoy.park(car2));
+    }
+
+    @Test
+    public void should_throw_car_missing_exception_when_customer_given_a_null_car(){
+        Parker parkingBoy = new Parker(new ParkingLot(1));
+
+        assertThrows(CarMissing.class,()-> parkingBoy.park(null));
     }
 }
