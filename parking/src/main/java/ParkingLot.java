@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class ParkingLot {
+public class ParkingLot implements Parkable{
     private final int capcity;
     private HashMap<Ticket, Car> carList = new HashMap<>();
     private int id;

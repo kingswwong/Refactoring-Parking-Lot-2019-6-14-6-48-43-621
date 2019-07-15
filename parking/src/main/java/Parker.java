@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class Parker {
+public abstract class Parker implements Parkable{
     protected List<ParkingLot> parkingLotList = new ArrayList<>();
 
     public Parker(ParkingLot... parkingLots) {
