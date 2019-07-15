@@ -27,4 +27,11 @@ public abstract class Parker {
         return correspondingParkingLot.fetch(ticket);
     }
 
+    public boolean isFull(){
+        return parkingLotList.stream().anyMatch(parkingLot -> parkingLot.isFull());
+    }
+
+    public boolean containsTicket(Ticket ticket){
+        return parkingLotList.stream().anyMatch(parkingLot -> parkingLot.containsTicket(ticket));
+    }
 }
