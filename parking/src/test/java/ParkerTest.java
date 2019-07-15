@@ -14,4 +14,15 @@ public class ParkerTest {
         Ticket ticket = parkingBoy.park(car);
         assertEquals(car,parkingBoy.fetch(ticket));
     }
+
+    @Test
+    public void should_park_multiple_car_and_fetch_the_right_car(){
+
+        Parker parkingBoy = new Parker(new ParkingLot(1));
+        Car car1 = new Car();
+        Car car2 = new Car();
+        parkingBoy.park(car1);
+        Ticket ticket2 = parkingBoy.park(car2);
+        assertEquals(car2,parkingBoy.fetch(ticket2));
+    }
 }
